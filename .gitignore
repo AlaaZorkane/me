@@ -129,6 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+yo
+
 .yarn/*
 !.yarn/cache
 !.yarn/patches
