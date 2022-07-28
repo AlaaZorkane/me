@@ -46,34 +46,26 @@ function LogoOrchestrator() {
     <OrchestratorContainer onTap={handleTap} role="button">
       <MouseOrchestrator />
       <AnimatePresence exitBeforeEnter>
-        {type === LogoType.Letter && (
-          <LogoLetter
-            key="letter"
-            variants={logoVariant}
-            initial="initial"
-            exit="exit"
-            animate="shown"
-            aria-description="Logo, the letter 'a' written in a cursive font"
-          />
-        )}
-        {type === LogoType.Memoji && (
-          <LogoMemoji
-            key="memoji"
-            variants={logoVariant}
-            initial="initial"
-            exit="exit"
-            animate="shown"
-          />
-        )}
-        {type === LogoType.Profile && (
-          <LogoProfile
-            key="profile"
-            initial="initial"
-            exit="exit"
-            animate="shown"
-            variants={logoVariant}
-          />
-        )}
+        <motion.div
+          key={type}
+          variants={logoVariant}
+          initial="initial"
+          animate="shown"
+          exit="exit"
+        >
+          {(() => {
+            switch (type) {
+              case LogoType.Profile:
+                return <LogoProfile src="/assets/profile.jpg" key="profile" />;
+              case LogoType.Letter:
+                return <LogoLetter key="letter" />;
+              case LogoType.Memoji:
+                return <LogoMemoji src="/assets/memoji.png" key="memoji" />;
+              default:
+                return null;
+            }
+          })()}
+        </motion.div>
       </AnimatePresence>
     </OrchestratorContainer>
   );
